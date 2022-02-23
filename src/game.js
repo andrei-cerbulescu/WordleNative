@@ -8,7 +8,7 @@ import cuvantAleator from "./cuvantAleator";
 function Game() {
   const [secret_word, setSecret_word] = useState(cuvantAleator())
 
-  const [history, setHistory] = useState(['', '', '', '', '', ''])
+  const [history, setHistory] = useState(Array(5).fill(''))
   const [curentIteration, setCurentIteration] = useState(0)
 
   const pushHistory = (word) => {
@@ -19,7 +19,7 @@ function Game() {
   }
 
   const restartGame = () => {
-    setHistory(['', '', '', '', ''])
+    setHistory(Array(5).fill(''))
     setSecret_word(cuvantAleator())
     setCurentIteration(0)
   }
@@ -40,16 +40,29 @@ function Game() {
 
   return (
     <Fragment>
+      <View
+        style={{
+          position: 'absolute',
+          left: 15,
+          top: 15,
+        }}
+      >
+        <Button
+          onPress={() => restartGame()}
+          title="Restart"
+        />
+      </View>
       {history.includes(secret_word) &&
         <Fragment>
           <Text>Ai castigat!</Text>
+          <Text>Cuvantul era: {secret_word}</Text>
           <Button
             title={"Reporneste"}
             onPress={(() => restartGame())}
           />
         </Fragment>
       }
-      {!history.includes(secret_word) && curentIteration >= history.length && 
+      {!history.includes(secret_word) && curentIteration >= history.length &&
         <Fragment>
           <Text>Ai pierdut!</Text>
           <Text>Cuvantul era: {secret_word}</Text>
@@ -59,12 +72,12 @@ function Game() {
           />
         </Fragment>
       }
-     {!((!history.includes(secret_word) && curentIteration >= history.length) || history.includes(secret_word)) && <Fragment>
-      {historyBoxes}
-      <Keyboard
-        word={secret_word}
-        pushHistory={pushHistory}
-      />
+      {!((!history.includes(secret_word) && curentIteration >= history.length) || history.includes(secret_word)) && <Fragment>
+        {historyBoxes}
+        <Keyboard
+          word={secret_word}
+          pushHistory={pushHistory}
+        />
       </Fragment>}
     </Fragment>
   )

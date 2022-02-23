@@ -5,6 +5,7 @@ import Game from './src/game';
 export default function App() {
   return ( 
     <View style={styles.container}>
+    <StatusBar hidden />
       <Game/>
       <StatusBar style="auto" />
     </View>
