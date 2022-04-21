@@ -1,22 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
 import Game from './src/game';
+import HomeScreen from './src/HomeScreen';
+import { StatusBar } from 'expo-status-bar';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return ( 
-    <View style={styles.container}>
-    <StatusBar hidden />
-      <Game/>
+  return (
+    <NavigationContainer>
+      <StatusBar hidden />
       <StatusBar style="auto" />
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
