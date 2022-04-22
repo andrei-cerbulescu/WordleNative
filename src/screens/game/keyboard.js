@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { Fragment } from 'react/cjs/react.production.min';
 import Key from './key';
-import TextBox from './textBox';
+import TextBox from '../parts/textBox';
 
 const Keyboard = (props) => {
   const [typedWord, setCurentWord] = useState('')
