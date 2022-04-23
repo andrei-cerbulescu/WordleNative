@@ -18,6 +18,7 @@ function Game(props) {
   }, [])
 
   const [username, set_username] = useState('')
+  const [keyboard_key, set_keyboard_key] = useState(1)
   const [history, setHistory] = useState(Array(5).fill(''))
   const [curentIteration, setCurentIteration] = useState(0)
   const [rating, set_rating] = useState(0)
@@ -41,6 +42,7 @@ function Game(props) {
 
   const restartGame = () => {
     setHistory(Array(5).fill(''))
+    set_keyboard_key(keyboard_key + 1)
     generateWord()
     setCurentIteration(0)
   }
@@ -128,6 +130,7 @@ function Game(props) {
         >Acest cuvânt are un rating de {rating}%</Text>
         {historyBoxes}
         <Keyboard
+          key={keyboard_key}
           word={secret_word}
           pushHistory={pushHistory}
         />
