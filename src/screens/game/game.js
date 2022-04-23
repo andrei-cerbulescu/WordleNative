@@ -5,23 +5,28 @@ import { Fragment } from "react/cjs/react.production.min";
 import { Text, View, Button } from "react-native";
 import words from "../../api/words";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RateWord from "./rate";
 
 function Game(props) {
   const [secret_word, setSecret_word] = useState('______')
+  const [word_id, set_word_id] = useState(0)
   useEffect(() => {
     generateWord();
     AsyncStorage.getItem('username').then(username => {
       set_username(username)
     })
-  })
+  }, [])
 
   const [username, set_username] = useState('')
   const [history, setHistory] = useState(Array(5).fill(''))
   const [curentIteration, setCurentIteration] = useState(0)
+  const [rating, set_rating] = useState(0)
 
   const generateWord = () => {
     words.random_word().then(res => {
       setSecret_word(res.data.word)
+      set_word_id(res.data.id)
+      set_rating(res.data.rating)
     }).catch(e => {
       console.log(e)
     })
@@ -101,6 +106,9 @@ function Game(props) {
             title={"Reporneste"}
             onPress={(() => restartGame())}
           />
+          <RateWord
+            word_id={word_id}
+          />
         </Fragment>
       }
       {!history.includes(secret_word) && curentIteration >= history.length &&
@@ -111,16 +119,32 @@ function Game(props) {
             title={"Reporneste"}
             onPress={(() => restartGame())}
           />
+          <RateWord />
         </Fragment>
       }
       {!((!history.includes(secret_word) && curentIteration >= history.length) || history.includes(secret_word)) && <Fragment>
+        <Text
+          style={{ paddingBottom: 25 }}
+        >Acest cuvânt are un rating de {rating}%</Text>
         {historyBoxes}
         <Keyboard
           word={secret_word}
           pushHistory={pushHistory}
         />
       </Fragment>}
-      <Text>Hello {username}</Text>
+      <View
+        style={{
+          alignSelf: 'center',
+          position: 'absolute',
+          bottom: 35
+        }}
+      >
+        <Button
+          title={"Sugerează un cuvânt"}
+          onPress={() => props.navigation.navigate('SuggestWord', {})}
+        />
+      </View>
+
     </Fragment>
   )
 }

@@ -1,9 +1,5 @@
-import { Fragment } from "react/cjs/react.production.min";
-import Game from "./game/game";
-import { Text, View, Button, StyleSheet } from "react-native";
-import { useState } from "react";
+import { Text, View } from "react-native";
 import user from "../api/user";
-import IndexLogin from "./login";
 
 
 

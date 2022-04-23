@@ -7,4 +7,14 @@ export default class words {
     const token = await AuthenticationHeader()
     return axios.get(`${server_ip}/word`, token)
   }
+
+  static async suggest_word(data) {
+    const token = await AuthenticationHeader()
+    return axios.post(`${server_ip}/suggest_word`, data, token)
+  }
+
+  static async rate_word(data) {
+    const token = await AuthenticationHeader()
+    return axios.post(`${server_ip}/rate_word`, data, token)
+  }
 }

@@ -26,7 +26,14 @@ export default function IndexLogin({ navigation }) {
       })
   }
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{
+        position: 'absolute',
+        top: 0, left: 0,
+        right: 0, bottom: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
       <TextInput
         style={styles.input}
         onChangeText={set_username}
@@ -43,7 +50,7 @@ export default function IndexLogin({ navigation }) {
         placeholder={"Password"}
       />
 
-      <View style={{ marginLeft: 70, marginRight: 70 }}>
+      <View style={{ marginLeft: 70, marginRight: 70, marginTop: 20 }}>
         <Button
           title={"Login"}
           onPress={login}
@@ -67,7 +74,9 @@ const styles = StyleSheet.create({
     marginRight: 70,
     borderWidth: 1,
     paddingTop: 10,
-    textAlign: "center"
+    textAlign: "center",
+    width: 250,
+    marginTop: 20
   },
   error: {
     height: 40,
@@ -75,6 +84,7 @@ const styles = StyleSheet.create({
     marginRight: 70,
     paddingTop: 10,
     textAlign: "center",
-    color: "red"
+    color: "red",
+    marginTop: 20
   }
 });
