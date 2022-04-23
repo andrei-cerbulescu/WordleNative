@@ -16,4 +16,11 @@ export default class user {
       data
     )
   }
+
+  static register(data) {
+    return axios.post(
+      `${server_ip}/register`,
+      data
+    )
+  }
 }

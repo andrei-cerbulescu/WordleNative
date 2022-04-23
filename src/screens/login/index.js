@@ -50,11 +50,20 @@ export default function IndexLogin({ navigation }) {
         placeholder={"Password"}
       />
 
-      <View style={{ marginLeft: 70, marginRight: 70, marginTop: 20 }}>
-        <Button
-          title={"Login"}
-          onPress={login}
-        />
+      <View style={{ marginLeft: 70, marginRight: 70, marginTop: 20, flexDirection: "row" }}>
+        <View
+          style={{ marginRight: 20 }}>
+          <Button
+            title={"Înregistrează-te"}
+            onPress={() => { navigation.navigate('Register', {}) }}
+          />
+        </View>
+        <View>
+          <Button
+            title={"Login"}
+            onPress={login}
+          />
+        </View>
       </View>
       {error &&
         <Text

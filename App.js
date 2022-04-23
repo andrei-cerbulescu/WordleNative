@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import IndexLogin from './src/screens/login';
 import IndexGame from './src/screens/game';
 import SuggestWord from './src/screens/suggest/suggest_word';
+import Register from './src/screens/login/register';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,11 @@ export default function App() {
         <Stack.Screen
           name="IndexLogin"
           component={IndexLogin}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
           options={{ headerShown: false }}
         />
         <Stack.Screen
