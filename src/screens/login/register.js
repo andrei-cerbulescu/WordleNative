@@ -38,7 +38,6 @@ export default function Register({ navigation }) {
     }).then(res => {
       navigation.goBack()
     }).catch(e => {
-      console.log(e.response.data)
       set_errors([e.response.data.error])
     })
   }
